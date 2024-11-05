@@ -6,6 +6,7 @@ import 'nprogress/nprogress.css'
 import { Spin } from 'antd'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux'
+import Loading from '@/components/Load/Loading'
 
 export default function AppRouter() {
   const location = useLocation()
@@ -35,7 +36,7 @@ export default function AppRouter() {
     }
   }, [location.pathname])
   return (
-    <Suspense fallback={<Spin />}>
+    <Suspense fallback={<Loading />}>
       <Routes>
         {routes.map((item) => (
           <Route
