@@ -1,11 +1,8 @@
 var express = require('express')
 var router = express.Router()
 const db = require('../../../db')
-const uuid = require('uuid')
 const tokenServer = require('../../../utils/token')
-const { utcNow, filterTime } = require('../../../utils/common')
-const { checkPermission } = require('../../../utils/permission')
-const { verifyPassword } = require('../../../utils/recursion')
+const { filterTime } = require('../../../utils/common')
 
 router.post('/login', async (req, res, next) => {
   const { userName, password, code } = req.body
@@ -85,7 +82,7 @@ router.post('/info', async (req, res, next) => {
   if (!id) {
     res.send({
       code: 400,
-      msg: '缺少token'
+      msg: '登录失效'
     })
   }
 
