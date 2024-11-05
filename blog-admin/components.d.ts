@@ -7,8 +7,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Classify: typeof import('./src/components/classify/index.vue')['default']
-    Drag: typeof import('./src/components/drag/Drag.vue')['default']
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -71,10 +69,8 @@ declare module 'vue' {
     PieChart: typeof import('./src/components/echarts/PieChart.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ScrollTag: typeof import('./src/components/scroll/ScrollTag.vue')['default']
     ScrollWheel: typeof import('./src/components/scroll/ScrollWheel.vue')['default']
     Table: typeof import('./src/components/table/Table.vue')['default']
-    Upload: typeof import('./src/components/upload/upload.vue')['default']
     UploadExcel: typeof import('./src/components/upload/UploadExcel.vue')['default']
     UploadImage: typeof import('./src/components/upload/UploadImage.vue')['default']
   }

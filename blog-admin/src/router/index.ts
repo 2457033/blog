@@ -24,6 +24,12 @@ const routes: Array<RouteRecordRaw> = [
         name: 'my-info',
         meta: { requiresAuth: true, title: '个人资料', cache: 1 },
         component: () => import('@/views/myInfo/index.vue')
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        alias: '/404',
+        // name: '404',
+        component: () => import('@/views/error/404.vue')
       }
     ]
   },
@@ -38,12 +44,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/login.vue')
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    alias: '/404',
-    // name: '404',
-    component: () => import('@/views/error/404.vue')
   }
 ]
 
@@ -73,6 +73,7 @@ router.beforeEach(async (to, _from, next) => {
       await getUserInfo()
       await getMenuList(userStore.userinfo.permission!)
       const routes = generateRoutes()
+      console.log(routes)
       routes.forEach((r) => {
         if (!router.hasRoute(r.name!)) {
           router.addRoute('system', r)

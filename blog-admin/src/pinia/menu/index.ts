@@ -162,27 +162,28 @@ function filterRoute(menus: menusF[]) {
 
 function extractDynamicRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
   const result: RouteRecordRaw[] = []
+
   routes.forEach((route) => {
-    const newRoute: RouteRecordRaw = { ...route, children: [] }
-    if (route.children && route.children.length > 0) {
+    if (
+      route.meta?.menuType === 'menu' &&
+      route.children &&
+      route.children.length > 0
+    ) {
+      const newRoute = { ...route, children: [] }
+      result.push(newRoute)
+
       route.children.forEach((child) => {
-        if (
-          route.meta?.menuType === 'menu' &&
-          child.meta?.menuType === 'menu'
-        ) {
-          result.push({
-            ...child,
-            path: child.path
-          })
-        } else {
-          newRoute.children!.push(child)
-        }
-        if (child.children) {
-          extractDynamicRoutes(child.children)
+        if (child.meta?.menuType === 'menu') {
+          result.push(child)
         }
       })
+    } else {
+      if (route.children) {
+        route.children = extractDynamicRoutes(route.children)
+      }
+      result.push(route)
     }
-    result.push(newRoute)
   })
+
   return result
 }

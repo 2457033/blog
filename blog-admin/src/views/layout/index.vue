@@ -73,7 +73,10 @@ onMounted(() => {
           class="main"
           @scroll="mainScroll"
         >
-          <ElConfigProvider :locale="zhCn">
+          <ElConfigProvider
+            :locale="zhCn"
+            :message="{ max: 1 }"
+          >
             <RouterView v-slot="{ Component }">
               <Transition
                 name="page-slide"

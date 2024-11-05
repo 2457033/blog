@@ -27,7 +27,7 @@ const onUpdateCategory = (item: Row) => {
         class="fixed w-[50px] h-[50px] bg-[#409eff] rounded-[50%] right-[40px] bottom-[50px] flex items-center justify-center cursor-pointer"
         @click="
           router.push({
-            name: 'blog-add'
+            name: 'blog-manage-blog-add'
           })
         "
       >

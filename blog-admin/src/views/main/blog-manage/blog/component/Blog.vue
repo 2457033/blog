@@ -333,7 +333,7 @@ onMounted(() => postBlogListApi())
                     class="ml-6 cursor-pointer edit-hover"
                     @click="
                       router.push({
-                        name: 'blog-detail',
+                        name: 'blog-manage-blog-detail',
                         params: {
                           id: item.id
                         }
