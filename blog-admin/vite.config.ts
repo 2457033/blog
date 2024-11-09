@@ -7,8 +7,10 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // https://vitejs.dev/config/
 export default ({ mode }: any) => {
   const env = loadEnv(mode, process.cwd())
+
   console.log('env -> ', env)
   return defineConfig({
+    base: env.VITE_ENV === 'production' ? '/blog-admin' : '',
     server: {
       host: '0.0.0.0'
     },

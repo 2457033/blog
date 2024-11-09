@@ -76,7 +76,6 @@ router.get('/ipInfo', async (req, res, next) => {
   try {
     for (const ip of ips) {
       const responese = await getLocationIp(ip)
-      console.log(responese);
       if (responese.status === 2) {
         return res.send({
           msg: '请求参数错误：ip非法',

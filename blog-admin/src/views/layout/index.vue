@@ -9,7 +9,7 @@ import { zhCn } from 'element-plus/es/locales.mjs'
 const systemToolStore = useSystemTool()
 const windowStore = useWindow()
 const { screenWidth } = storeToRefs(windowStore)
-const { updateWidth, updateHeight } = windowStore
+const { updateWidth } = windowStore
 
 const { isCollapse } = storeToRefs(systemToolStore)
 
@@ -39,10 +39,10 @@ const getWindowWidth = () => {
   })
 }
 
-const mainScroll = (e: Event) => {
-  const target = e.target as HTMLElement
-  updateHeight(target.scrollTop)
-}
+// const mainScroll = (e: Event) => {
+//   const target = e.target as HTMLElement
+//   updateHeight(target.scrollTop)
+// }
 
 // const removeWindowListen = () => {
 //   window.removeEventListener('resize')
@@ -54,43 +54,46 @@ onMounted(() => {
 </script>
 <template>
   <div class="min-w-[375px] common-layout relative w-full h-full flex">
-    <ElContainer>
-      <ElAside
-        :width="screenWidth > 992 ? (isCollapse ? 'auto' : 200 + 'px') : 'auto'"
-        class="min-h-screen"
-      >
-        <Aside
-          :screen-width="screenWidth"
-          :is-collapse="isCollapse"
-        />
-      </ElAside>
+    <ElConfigProvider
+      :locale="zhCn"
+      :message="{ max: 1 }"
+    >
       <ElContainer>
-        <ElHeader>
-          <Header :screen-width="screenWidth" />
-        </ElHeader>
-
-        <ElMain
-          class="main"
-          @scroll="mainScroll"
+        <ElAside
+          :width="
+            screenWidth > 992 ? (isCollapse ? 'auto' : 200 + 'px') : 'auto'
+          "
+          class="min-h-screen"
         >
-          <ElConfigProvider
-            :locale="zhCn"
-            :message="{ max: 1 }"
-          >
-            <RouterView v-slot="{ Component }">
+          <Aside
+            :screen-width="screenWidth"
+            :is-collapse="isCollapse"
+          />
+        </ElAside>
+        <ElContainer>
+          <ElHeader>
+            <Header :screen-width="screenWidth" />
+          </ElHeader>
+
+          <ElMain class="main">
+            <RouterView v-slot="{ Component, route }">
               <Transition
                 name="page-slide"
                 mode="out-in"
               >
-                <div class="flex flex-col flex-1">
+                <!-- 加入div防止每次创建vue页面不加入div报错，并创建标识让Transition识别 -->
+                <div
+                  class="flex flex-col flex-1"
+                  :key="route.name"
+                >
                   <component :is="Component" />
                 </div>
               </Transition>
             </RouterView>
-          </ElConfigProvider>
-        </ElMain>
+          </ElMain>
+        </ElContainer>
       </ElContainer>
-    </ElContainer>
+    </ElConfigProvider>
   </div>
 </template>
 <style lang="less" scoped>

@@ -188,16 +188,6 @@ const paginationChange = (currentPage: number, pageSize: number) => {
   postBlogSwiperListApi()
 }
 
-const onSerch = () => {
-  postBlogSwiperListApi()
-}
-
-const onReset = () => {
-  searchForm.pageSize = 10
-  Object.assign(searchForm, getSearchForm())
-  postBlogSwiperListApi()
-}
-
 const handleAvatarSuccess = (response: any) => {
   if (response) {
     modal.img = response.url

@@ -73,7 +73,7 @@ router.beforeEach(async (to, _from, next) => {
       await getUserInfo()
       await getMenuList(userStore.userinfo.permission!)
       const routes = generateRoutes()
-      console.log(routes)
+      // console.log(routes)
       routes.forEach((r) => {
         if (!router.hasRoute(r.name!)) {
           router.addRoute('system', r)
