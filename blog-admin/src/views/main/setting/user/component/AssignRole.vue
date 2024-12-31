@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { menusF, postMenusList } from '@/api/setting/menus'
+import { menusF, getMenusList } from '@/api/setting/menus'
 import { Row, postRoleList } from '@/api/setting/role'
 import { makeNumberProp, makeStringMap } from '@/shared/props'
 import { nextTick, reactive, ref, watch } from 'vue'
@@ -23,7 +23,7 @@ watch(
   (newVal) => {
     if (newVal) {
       postRoleListApi()
-      postMenuAllApi()
+      getMenuAllApi()
     }
   }
 )
@@ -46,9 +46,9 @@ const tableData = reactive({
 })
 
 const menusList = ref([] as menusF[])
-const postMenuAllApi = async () => {
+const getMenuAllApi = async () => {
   try {
-    const res = await postMenusList()
+    const res = await getMenusList()
     menusList.value = res.data.row
   } catch (err) {
     console.log(err)

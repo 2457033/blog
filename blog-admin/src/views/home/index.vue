@@ -42,7 +42,7 @@ const postVisitCountApi = async () => {
     visitData.value.times = res.data.times?.map((s: any) =>
       s?.replace(new Date().getFullYear().toString() + '-', '')
     )
-    visitData.value.dates = res.data.visitCounts
+    visitData.value.dates = res.data.dates
   } catch (err) {
     console.log(err)
   }
@@ -94,11 +94,18 @@ const onDateChange = (e: any) => {
 
 const init = async () => {
   showLoading(true)
-  await getHomeInfoApi()
-  await postVisitCountApi()
-  await getHomeIpInfoApi()
-  await postDeviceOrvisitAndCountApi()
-  showLoading(false)
+  try {
+    await Promise.all([
+      getHomeInfoApi(),
+      postVisitCountApi(),
+      getHomeIpInfoApi(),
+      postDeviceOrvisitAndCountApi()
+    ])
+    showLoading(false)
+  } catch (err) {
+    console.log(err)
+    showLoading(false)
+  }
 }
 
 onMounted(() => {

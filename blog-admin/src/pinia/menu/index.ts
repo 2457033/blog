@@ -1,4 +1,4 @@
-import { menusF, postMenus } from '@/api/setting/menus'
+import { menusF, getMenus as getMenusApi } from '@/api/setting/menus'
 import router from '@/router'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -10,10 +10,10 @@ export const useMenuStore = defineStore('useMenuStore', () => {
 
   async function getMenuList(permission: string) {
     try {
-      const res = await postMenus()
+      const res = await getMenusApi()
       const list = res.data.row
       if (permission !== '*:*:*') {
-        const permissionF = permission.split(',')
+        const permissionF = permission?.split(',')
         const arr = filterMenus(permissionF, list)
         const menuList = getMenus(list, arr)
         const menuListF = filterStatus(menuList)

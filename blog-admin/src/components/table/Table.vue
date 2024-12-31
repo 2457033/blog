@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useWindow } from '@/pinia'
-import { PropType, computed, ref, watch } from 'vue'
+import { PropType, ref, watch } from 'vue'
 
 const props = defineProps({
   total: {
@@ -51,14 +51,14 @@ const props = defineProps({
 
 const windowStore = useWindow()
 
-const currentPage = computed({
-  get() {
-    return props.currentPage
-  },
-  set(val) {
-    return val
-  }
-})
+//const currentPage = computed({
+//  get() {
+//    return props.currentPage
+//  },
+//  set(val) {
+//    return val
+//  }
+//})
 
 watch(
   () => props.pageSize,
@@ -121,8 +121,6 @@ const onChange = (currentPage: number, pageSize: number) => {
       <ElPagination
         background
         :layout="layout"
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSizeCom"
         :page-sizes="pageSizes"
         :total="props.total"
         @change="onChange"

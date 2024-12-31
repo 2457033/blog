@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { postUserInfo } from '@/api/login'
+import { getUserInfo } from '@/api/login'
 import {
   postUptPwd,
   postUsersUpdate,
@@ -31,8 +31,8 @@ const form = reactive({
   loading: false
 })
 
-const getUserInfo = async () => {
-  const res = await postUserInfo(token.value!)
+const getUserInfoApi = async () => {
+  const res = await getUserInfo()
   Object.assign(form.info, res.data)
 }
 
@@ -197,7 +197,7 @@ const onChange = (uploadFile: UploadFile, _uploadFiles: UploadFiles) => {
   modal.isShow = true
 }
 
-getUserInfo()
+getUserInfoApi()
 </script>
 <template>
   <div>

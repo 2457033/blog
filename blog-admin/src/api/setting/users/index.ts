@@ -93,7 +93,7 @@ export const postUsersUnBind = (data: bindF) => {
 
 /** 导出 */
 export const postUserExport = (data: usersF) => {
-  return request.post('/api/upload_user/export', data, {
+  return request.post('/api/users/export', data, {
     responseType: 'arraybuffer'
   })
 }
@@ -101,7 +101,7 @@ export const postUserExport = (data: usersF) => {
 /** 下载模板 */
 export const postUserDownloadTem = () => {
   return request.post(
-    '/api/upload_user/downloadTem',
+    '/api/users/downloadTem',
     {},
     {
       responseType: 'arraybuffer'
@@ -111,7 +111,7 @@ export const postUserDownloadTem = () => {
 
 /** 上传头像 */
 export const uploadUserUptAvtar = (url: string) => {
-  return request.post('/api/upload_user/update/avtar', { url })
+  return request.post('/api/users/update/avtar', { url })
 }
 
 /** 修改密码 */

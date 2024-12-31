@@ -67,7 +67,7 @@ const errorCapture = (err: AxiosError) => {
 function handleCode(code: number): void {
   switch (code) {
     case 401:
-      ElMessage.error('登录失败，请重新登录')
+      ElMessage.error('登录已失效，请重新登录')
       localStorage.removeItem('user_token')
       router.replace({
         path: '/login'

@@ -31,12 +31,12 @@ const props = defineProps({
         style="color: #ffffffb8"
         class="text-white text-[14px]"
       >
-        本地文件
+        角色数量
       </div>
       <div class="text-[32px] mt-[10px] text-white">
         {{
-          props.info.fileSize !== undefined && props.info.fileSize !== null
-            ? props.info.fileSize + 'M'
+          props.info.rolesCount !== undefined && props.info.rolesCount !== null
+            ? props.info.rolesCount
             : '--'
         }}
       </div>

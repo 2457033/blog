@@ -60,12 +60,12 @@ export interface MenusAddF {
   query: string
 }
 
-export const postMenus = () => {
-  return request.post<menusF[]>('/api/menus')
+export const getMenus = () => {
+  return request.get<menusF[]>('/api/menus')
 }
 
-export const postMenusList = () => {
-  return request.post<menusF[]>('/api/menus/list')
+export const getMenusList = () => {
+  return request.get<menusF[]>('/api/menus/list')
 }
 
 export const postMenusAll = (data: menusBody) => {

@@ -105,7 +105,6 @@ const modalForm = reactive({
 const onCancel = () => {
   modalForm.isShow = false
   modalForm.loading = false
-  getBlogCategoryApi()
 }
 
 const onUpdate = () => {

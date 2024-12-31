@@ -399,6 +399,12 @@ const onSuccess = (response: any) => {
   postUsersListApi()
 }
 
+const onPaginationChange = (currentPage: number, pageSize: number) => {
+  searchForm.pageNum = currentPage
+  searchForm.pageSize = pageSize
+  postUsersListApi()
+}
+
 onMounted(() => {
   postUsersListApi()
 })
@@ -487,8 +493,7 @@ onMounted(() => {
       border
       :total="tableData.total"
       v-loading="tableData.loading"
-      :current-page="searchForm.pageNum"
-      :page-size="searchForm.pageSize"
+      @pagination-change="onPaginationChange"
       operate-width="250"
     >
       <template #list>

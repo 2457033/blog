@@ -36,25 +36,25 @@ interface BlogSwiperUpdateStatusQ {
 
 /** 轮播列表 */
 export const postBlogSwiperList = (data: BlogSwiperListQ) => {
-  return request.post<BlogSwiperListD>('/api/blog_swiper/list', data)
+  return request.post<BlogSwiperListD>('/api/blog/swiper/list', data)
 }
 
 /** 新增轮播 */
 export const postBlogSwiperAdd = (data: BlogSwiperAddQ) => {
-  return request.post('/api/blog_swiper/add', data)
+  return request.post('/api/blog/swiper/add', data)
 }
 
 /** 修改轮播 */
 export const postBlogSwiperUpdate = (data: BlogSwiperUpdateQ) => {
-  return request.post('/api/blog_swiper/update', data)
+  return request.post('/api/blog/swiper/update', data)
 }
 
 /** 修改轮播状态 */
 export const postBlogSwiperUpdateStatus = (data: BlogSwiperUpdateStatusQ) => {
-  return request.post('/api/blog_swiper/update/status', data)
+  return request.post('/api/blog/swiper/update/status', data)
 }
 
 /** 删除 */
 export const getBlogSwiperDelete = (id: number) => {
-  return request.get('/api/blog_swiper/delete', { id })
+  return request.get('/api/blog/swiper/delete', { id })
 }

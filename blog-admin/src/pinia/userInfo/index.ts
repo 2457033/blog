@@ -1,4 +1,4 @@
-import { postUserInfo } from '@/api/login'
+import { getUserInfo as getUserInfoRequest } from '@/api/login'
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 
@@ -41,7 +41,7 @@ export const userInfo = defineStore('userInfo', () => {
   }
 
   async function getUserInfo() {
-    const res = await postUserInfo(token.value!)
+    const res = await getUserInfoRequest()
     updateUserInfo(res.data)
   }
 

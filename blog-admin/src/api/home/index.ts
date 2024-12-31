@@ -4,6 +4,7 @@ export interface homeInfo {
   usersCount: Number
   blogsCount: Number
   fileSize: Number
+  rolesCount: Number
 }
 
 interface data {

@@ -1,5 +1,29 @@
 import request from '@/request'
 
+interface BlogAllF {
+  pageSize: number
+  pageNum: number
+  title: string
+  nickName: string
+}
+
+interface BlogAllR {
+  row: AllRow[]
+  total: number
+}
+
+interface AllRow {
+  id: number
+  img: string
+  text: string
+  title: string
+  categoryType: string
+  tags: string[]
+  blogType: number
+  nickName: string
+  createTime: string
+}
+
 interface BlogList {
   row: Row[]
   total: number
@@ -63,7 +87,12 @@ interface BlogDetailUpdateD {
   tags: string
 }
 
-/** 博客列表 */
+/** 获取全部文章 */
+export const postBlogAll = (data: BlogAllF) => {
+  return request.post<BlogAllR>('/api/blog/all', data)
+}
+
+/** 个人文章列表 */
 export const postBlogList = (data: BlogListF) => {
   return request.post<BlogList>('/api/blog/list', data)
 }

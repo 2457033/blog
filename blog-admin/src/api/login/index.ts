@@ -9,9 +9,9 @@ export interface loginF {
 }
 
 export const postLogin = (data: loginF) => {
-  return request.post('/api/users/login', data)
+  return request.post('/api/auth/login', data)
 }
 
-export const postUserInfo = (id: string) => {
-  return request.post<UserInfo>('/api/users/info', { id })
+export const getUserInfo = () => {
+  return request.get<UserInfo>('/api/auth/info')
 }

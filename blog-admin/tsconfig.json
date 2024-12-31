@@ -30,13 +30,13 @@
     "types": ["element-plus/global", "./wangeditor.d.ts"]
   },
   "include": [
-    "src/**/*.ts", 
-    "src/**/*.tsx", 
-    "src/**/*.vue",  
-    "types/**/*.d.ts", 
-    "auto-imports.d.ts", 
-    "components.d.ts", 
-    "shims-vue.d.ts"  
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "auto-imports.d.ts",
+    "components.d.ts",
+    "shims-vue.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

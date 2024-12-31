@@ -17,7 +17,7 @@ import {
   postRoleUpdateStatus,
   postUnBindUser
 } from '@/api/setting/role'
-import { menusF, postMenusList } from '@/api/setting/menus'
+import { menusF, getMenusList } from '@/api/setting/menus'
 import { exportExcel } from '@/shared/upload'
 
 const getSearchForm = () => ({
@@ -115,9 +115,9 @@ const rules = reactive<FormRules>({
 })
 
 const menusList = ref([] as menusF[])
-const postMenuAllApi = async () => {
+const getMenuListApi = async () => {
   try {
-    const res = await postMenusList()
+    const res = await getMenusList()
     menusList.value = res.data.row
   } catch (err) {
     console.log(err)
@@ -146,7 +146,7 @@ const postRoleListApi = async () => {
 }
 
 const addRole = async () => {
-  await postMenuAllApi()
+  await getMenuListApi()
   modalForm.title = '新增角色'
   modalForm.type = 'add'
   modalForm.isShow = true
@@ -154,7 +154,7 @@ const addRole = async () => {
 
 // 修改某个用户信息
 const updateClick = async (row: Row) => {
-  await postMenuAllApi()
+  await getMenuListApi()
   Object.assign(modalForm, row)
   modalForm.title = '修改角色'
   modalForm.type = 'update'

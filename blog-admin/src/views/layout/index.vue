@@ -56,7 +56,7 @@ onMounted(() => {
   <div class="min-w-[375px] common-layout relative w-full h-full flex">
     <ElConfigProvider
       :locale="zhCn"
-      :message="{ max: 1 }"
+      :message="{ max: 3 }"
     >
       <ElContainer>
         <ElAside
