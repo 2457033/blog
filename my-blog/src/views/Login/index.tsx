@@ -3,9 +3,10 @@ import { useState } from 'react'
 import { postLogin } from '@/api/login/login'
 import { useNavigate } from 'react-router-dom'
 
-import css from './index.module.less'
 import { useDispatch } from 'react-redux'
 import { updateToken } from '@/redux/userInfo'
+
+import css from './index.module.less'
 
 type FieldType = {
   username?: string

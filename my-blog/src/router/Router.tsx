@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import routes from './routes'
+import RouteList from './routes'
 import { Suspense, useEffect } from 'react'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -8,6 +8,7 @@ import { RootState } from '@/redux'
 import Loading from '@/components/Load/Loading'
 
 export default function AppRouter() {
+  const routes = RouteList()
   const location = useLocation()
   const Navigate = useNavigate()
   const { token } = useSelector((state: RootState) => state.userInfo)

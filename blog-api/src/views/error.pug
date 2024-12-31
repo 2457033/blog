@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .error-page
+    .error-content
+      h1.error-title= message 
+      h2.error-status= error.status
+      .error-stack
+        pre #{error.stack}

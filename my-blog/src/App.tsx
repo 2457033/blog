@@ -9,6 +9,11 @@ function App() {
   const theme: ThemeConfig = {
     token: {
       fontFamily: 'var(--app-font-family)'
+    },
+    components: {
+      Timeline: {
+        dotBg: 'none'
+      }
     }
   }
 

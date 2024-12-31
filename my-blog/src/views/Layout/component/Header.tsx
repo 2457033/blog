@@ -1,5 +1,14 @@
 import Logo from '@/components/logo/Logo'
-import { FileTextOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons'
+import {
+  ClockCircleOutlined,
+  EditOutlined,
+  HomeOutlined,
+  InfoCircleOutlined,
+  PictureOutlined,
+  SmileOutlined,
+  TagsOutlined,
+  UserOutlined
+} from '@ant-design/icons'
 import { Avatar, Button, Dropdown, Flex, MenuProps, Popover } from 'antd'
 import { nanoid } from 'nanoid'
 import styles from './index.module.less'
@@ -16,10 +25,58 @@ export default function Header() {
   const { token, userInfo } = useSelector((state: any) => state.userInfo)
   const dispatch: AppDispatch = useDispatch()
 
+  const list = [
+    { id: nanoid(), label: '首页', path: '/home', icon: <HomeOutlined /> },
+    {
+      id: nanoid(),
+      label: '话题',
+      path: '/topic',
+      icon: <TagsOutlined />
+    },
+    {
+      id: nanoid(),
+      label: '时间轴',
+      path: '/timeline',
+      icon: <ClockCircleOutlined />
+    },
+    { id: nanoid(), label: '标签', path: '/tags', icon: <TagsOutlined /> },
+    { id: nanoid(), label: '随笔', path: '/essay', icon: <EditOutlined /> },
+    { id: nanoid(), label: '生活', path: '/life', icon: <SmileOutlined /> },
+    {
+      id: nanoid(),
+      label: '相册',
+      path: '/photoalbum',
+      icon: <PictureOutlined />
+    },
+    {
+      id: nanoid(),
+      label: '关于',
+      path: '/about',
+      icon: <InfoCircleOutlined />
+    }
+  ]
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getUserInfo())
+    }
+  }, [token, dispatch])
+
   const items: MenuProps['items'] = [
     {
       key: nanoid(),
-      label: <Button type="link">个人资料</Button>
+      label: (
+        <Button
+          type="link"
+          onClick={() => Navigate('/profile')}
+        >
+          个人资料
+        </Button>
+      )
+    },
+    {
+      key: nanoid(),
+      label: <Button type="link">消息中心</Button>
     },
     {
       key: nanoid(),
@@ -34,28 +91,6 @@ export default function Header() {
     }
   ]
 
-  const list = [
-    { id: nanoid(), label: '首页', path: '/home', icon: <HomeOutlined /> },
-    {
-      id: nanoid(),
-      label: '文章',
-      path: '/article',
-      icon: <FileTextOutlined />
-    },
-    { id: nanoid(), label: '时间轴', path: '/timeline' },
-    { id: nanoid(), label: '标签', path: '/tag' },
-    { id: nanoid(), label: '随笔', path: '/essay' },
-    { id: nanoid(), label: '生活', path: '/life' },
-    { id: nanoid(), label: '相册', path: '/photoalbum' },
-    { id: nanoid(), label: '关于', path: '/about' }
-  ]
-
-  useEffect(() => {
-    if (token) {
-      dispatch(getUserInfo())
-    }
-  }, [token, dispatch])
-
   return (
     <div className="w-full z-[999] h-[60px] flex items-center justify-evenly bg-white shadow-[0px_8px_10px_rgba(0,0,0,0.1)]">
       <Flex align="center">
@@ -69,10 +104,10 @@ export default function Header() {
         {list.map((item) => (
           <div
             key={item.id}
-            className={`mx-1 cursor-pointer  ${
+            className={`mx-2 cursor-pointer transition-all duration-300 ${
               location.pathname === item.path
-                ? 'text-black'
-                : 'text-[#606266] hover:text-[#1677ff]'
+                ? 'text-[#1677ff] scale-110'
+                : 'text-[#606266] hover:text-[#1677ff] hover:scale-105'
             }`}
             onClick={() => Navigate(item.path)}
           >

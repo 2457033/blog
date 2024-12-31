@@ -1,6 +1,7 @@
 import { getArticleCategory, postArticleList, Row } from '@/api/article'
 import XCard from '@/components/XCard'
 import { RootState } from '@/redux'
+import { filterCommentTime } from '@/shared/common'
 import { UserOutlined } from '@ant-design/icons'
 import { Avatar, Empty, Image, Tabs, Tag } from 'antd'
 import { nanoid } from 'nanoid'
@@ -166,7 +167,7 @@ export default function ArticleList({ searchVal }: { searchVal: string }) {
                     <div className="ml-2">评论量 {item.commonCount}</div>
                   </div>
                   {/* 时间 */}
-                  <div>{item.createTime.split(' ')[0]}</div>
+                  <div>{filterCommentTime(item.createTime)}</div>
                 </div>
               </XCard>
             </div>

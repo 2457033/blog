@@ -1,13 +1,15 @@
-import { Carousel, Image, Skeleton } from 'antd'
+// import { Carousel, Image, Skeleton } from 'antd'
 import UserInfo from './component/UserInfo'
 import ArticleList from './component/ArticleList'
 import Search from './component/Search'
 import Other from './component/Other'
-import { getHomeList, HomeListD } from '@/api/home'
+import { getHomeList, getNewInfo, HomeListD, NewInfo } from '@/api/home'
 import { useEffect, useState } from 'react'
+import { Carousel, Skeleton, Image } from 'antd'
 
 export default function Home() {
   const [list, setList] = useState({} as HomeListD)
+  const [newInfo, setNewInfo] = useState({} as NewInfo)
   const [loading, setLoading] = useState(false)
 
   /** 搜素数据 */
@@ -18,6 +20,11 @@ export default function Home() {
       setLoading(true)
       const res = await getHomeList()
       setList({ swipers: res.data.swipers, weather: res.data.weather })
+      const newInfo = await getNewInfo()
+      setNewInfo({
+        article: newInfo.data.article,
+        comment: newInfo.data.comment
+      })
       setLoading(false)
     } catch (err) {
       setLoading(false)
@@ -41,6 +48,7 @@ export default function Home() {
         <Other
           loading={loading}
           weather={list.weather}
+          newInfo={newInfo}
         />
       </div>
       {/* 走马灯 */}
@@ -54,6 +62,7 @@ export default function Home() {
           autoplaySpeed={2000}
           draggable
           fade
+          dotPosition="top"
         >
           {loading ? (
             <div className="w-full h-[300px]">

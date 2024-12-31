@@ -40,7 +40,34 @@ export interface Weather {
   status: number
 }
 
-/** 登录 */
+export interface NewInfo {
+  article: Article[]
+  comment: Comment[]
+}
+
+interface Article {
+  id: number
+  title: string
+  createTime: string
+  visitCount: number
+}
+
+interface Comment {
+  blogId: number
+  nickName: string | undefined
+  icon: string | undefined
+  id: number
+  title: string
+  message: string
+  createTime: string
+}
+
+/** 首页信息 */
 export const getHomeList = () => {
-  return request.get<HomeListD>('/api/backend/home/list')
+  return request.get<HomeListD>('/api/reception/home/list')
+}
+
+/** 最新文章和评论 */
+export const getNewInfo = () => {
+  return request.get<NewInfo>('/api/reception/home/newInfo')
 }

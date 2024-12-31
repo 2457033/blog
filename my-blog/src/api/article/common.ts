@@ -22,11 +22,12 @@ export interface CommonRow {
   nickName?: string
   isMessage?: boolean
   loading?: boolean
-  replyLoading?: boolean
   toIcon?: string
   toNickName?: string
   commonCount?: number
   children?: CommonRow[]
+  replyNum?: number
+  replySize?: number
 }
 
 interface ArticleCommonAddQ {
@@ -36,12 +37,23 @@ interface ArticleCommonAddQ {
   toUserId: string
 }
 
+export interface ArticleCommonExpandQ {
+  id: number
+  pageSize: number
+  pageNum: number
+}
+
 /** 评论列表 */
 export const postArticleCommonList = (data: ArticleCommonListQ) => {
-  return request.post<ArticleListD>('/api/backend/article/common/list', data)
+  return request.post<ArticleListD>('/api/reception/comment/list', data)
 }
 
 /** 新增评论 */
 export const postArticleCommonAdd = (data: ArticleCommonAddQ) => {
-  return request.post('/api/backend/article/common/add', data)
+  return request.post('/api/reception/comment/add', data)
+}
+
+/** 展开更多回复 */
+export const postArticleCommonExpand = (data: ArticleCommonExpandQ) => {
+  return request.post('/api/reception/comment/expandApply', data)
 }

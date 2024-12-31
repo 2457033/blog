@@ -1,4 +1,4 @@
-import { postUserInfo } from '@/api/users'
+import { getUserInfo as getUserInfoApi } from '@/api/login'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface UserInfo {
@@ -50,7 +50,7 @@ export const userInfo = createSlice({
 export const getUserInfo = createAsyncThunk(
   'userInfo/getUserInfo',
   async () => {
-    const res = await postUserInfo()
+    const res = await getUserInfoApi()
     const data = res.data
     return data
   }
